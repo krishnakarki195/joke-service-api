@@ -66,4 +66,14 @@ public class JokeController {
         return ResponseEntity.ok(jokeService.getAllByCategory(jokeCategory));
     }
 
+    @GetMapping("/{jokeCategory}/random")
+    public ResponseEntity<Joke> getRandomByJokeCategory(@PathVariable("jokeCategory") JokeCategory jokeCategory){
+        try{
+            Joke joke = jokeService.getRandomJoke(jokeCategory);
+            return ResponseEntity.ok(joke);
+        }catch(Exception ex){
+            return ResponseEntity.noContent().header("errorMsg", "No joke found").build();
+        }
+    }
+
 }

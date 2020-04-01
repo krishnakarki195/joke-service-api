@@ -80,4 +80,23 @@ class JokeServiceTest {
 
     }
 
+    @Test
+    public void getRandomJokeTest(){
+        Joke joke1 = new Joke("Kid joke1 !", JokeCategory.KIDJOKES);
+        Joke joke2 = new Joke("Kid joke2 !", JokeCategory.KIDJOKES);
+        Joke joke3 = new Joke("Mom joke1 !", JokeCategory.MOMJOKES);
+        Joke joke4 = new Joke("Mon joke2 !", JokeCategory.MOMJOKES);
+        List<Joke> jokes = Arrays.asList(joke1,joke2,joke3,joke4);
+
+        jokes.forEach((joke)-> jokeService.save(joke) );
+
+        assertEquals(4, jokeService.getAll().size());
+
+        assertEquals(JokeCategory.KIDJOKES, jokeService.getRandomJoke(JokeCategory.KIDJOKES).getJokeCategory());
+        assertEquals(JokeCategory.MOMJOKES, jokeService.getRandomJoke(JokeCategory.MOMJOKES).getJokeCategory());
+
+    }
+
+
+
 }

@@ -140,5 +140,21 @@ class JokeControllerTest {
                 .andDo(print());
     }
 
+    @Test
+    public void getRandomJokeByCategoryApiTest() throws Exception {
+        String url = "/api/jokes/"+JokeCategory.DADJOKES+"/random";
+
+        Joke joke = new Joke("Dad joke1 !", JokeCategory.DADJOKES);
+        joke.setId(1L);
+
+        when(jokeService.getRandomJoke(ArgumentMatchers.any(JokeCategory.class))).thenReturn(joke);
+
+        mvc.perform(get(url)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(joke.getId()))
+                .andDo(print());
+    }
+
 
 }

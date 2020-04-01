@@ -65,4 +65,12 @@ public class JokeService {
         return jokeRepository.getAllByJokeCategory(jokeCategory);
     }
 
+    public Joke getRandomJoke(JokeCategory jokeCategory){
+        if(jokeRepository.getRandom(jokeCategory.name()) == null){
+            throw new RuntimeException("There are no jokes on " + jokeCategory.name() + "category" );
+        }else{
+            return jokeRepository.getRandom(jokeCategory.name());
+        }
+    }
+
 }

@@ -3,6 +3,7 @@ package com.galvanize.entities;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "jokes")
 public class Joke {
 
     @Id
